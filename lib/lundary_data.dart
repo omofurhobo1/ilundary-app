@@ -31,6 +31,7 @@ class _AddCountState extends State<AddCount> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.purple),
             onPressed: () {
               addCounter();
             },
@@ -40,6 +41,7 @@ class _AddCountState extends State<AddCount> {
           style: const TextStyle(fontSize: 25.0, color: Colors.purple),
         ),
         ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.purple),
             onPressed: () {
               subCounter();
             },
