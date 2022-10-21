@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ilundry/lundary_data.dart';
+import 'package:flutter/services.dart';
+import 'package:ilundry/PlaceOrder.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,29 +11,38 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text("iLundary"),
-        ),
-        drawer: const Drawer(),
-        body: Column(children: [
-          const SizedBox(height: 20.5),
-          Center(
-            child: Text(
-              "My Lundary Data",
-              style: TextStyle(
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.blue),
-            ),
-          ),
-          const MyOrder(),
-          StatData(),
-          CustomStack(),
-        ]),
+    return const MaterialApp(
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("iLundary"),
       ),
+      drawer: const Drawer(),
+      body: Column(children: const [
+        SizedBox(height: 10.5),
+        Center(
+          child: Text(
+            "My Lundary Data",
+            style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.w800,
+                color: Colors.blue),
+          ),
+        ),
+        MyOrder(),
+        StatData(),
+        CustomStack(),
+      ]),
     );
   }
 }
@@ -63,32 +73,32 @@ class StatData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(
-          width: 25.0,
+        const SizedBox(
+          width: 20.0,
         ),
         Container(
-          child: Center(
-              child: Text(
-            '42\nCompleted',
-            textAlign: TextAlign.center,
-          )),
           height: 100,
           width: 150,
           color: Colors.yellow,
           margin: const EdgeInsets.only(top: 30),
+          child: const Center(
+              child: Text(
+            '42\nCompleted',
+            textAlign: TextAlign.center,
+          )),
         ),
         Container(
           margin: const EdgeInsets.only(top: 30, left: 40.0),
-          padding: EdgeInsets.only(left: 15.0),
-          child: Center(
+          padding: const EdgeInsets.only(left: 15.0),
+          height: 100,
+          width: 150,
+          color: Colors.blue,
+          child: const Center(
               child: Text(
             '20\nPending',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white),
           )),
-          height: 100,
-          width: 150,
-          color: Colors.blue,
         )
       ],
     );
@@ -109,18 +119,31 @@ class CustomStack extends StatelessWidget {
           color: Colors.lightBlueAccent,
           child: Column(
             children: [
-              Container(
-                width: double.infinity,
-                color: Colors.greenAccent,
-                padding: const EdgeInsets.all(20),
-                child: const Center(child: Text("Place Order")),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PlaceOrder()),
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  color: Colors.greenAccent,
+                  padding: const EdgeInsets.all(20),
+                  child: const Center(child: Text("Place Order")),
+                ),
               ),
               const SizedBox(height: 20.0),
-              Container(
-                width: double.infinity,
-                color: Colors.red,
-                padding: const EdgeInsets.all(20),
-                child: const Center(child: Text("Exit")),
+              GestureDetector(
+                onTap: () {
+                  SystemNavigator.pop();
+                },
+                child: Container(
+                  width: double.infinity,
+                  color: Colors.red,
+                  padding: const EdgeInsets.all(20),
+                  child: const Center(child: Text("Exit")),
+                ),
               ),
             ],
           ),
