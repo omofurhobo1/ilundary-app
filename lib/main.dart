@@ -23,27 +23,31 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("iLundary"),
-      ),
-      drawer: const Drawer(),
-      body: Column(children: const [
-        SizedBox(height: 10.5),
-        Center(
-          child: Text(
-            "My Lundary Data",
-            style: TextStyle(
-                fontSize: 25.0,
-                fontWeight: FontWeight.w800,
-                color: Colors.blue),
-          ),
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text("iLundary"),
         ),
-        MyOrder(),
-        StatData(),
-        CustomStack(),
-      ]),
-    );
+        drawer: const Drawer(),
+        body: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(),
+            child: Column(children: const [
+              SizedBox(height: 10.5),
+              Center(
+                child: Text(
+                  "My Lundary Data",
+                  style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.blue),
+                ),
+              ),
+              MyOrder(),
+              StatData(),
+              CustomStack(),
+            ]),
+          ),
+        ));
   }
 }
 
